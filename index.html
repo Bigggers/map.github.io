@@ -1,75 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>高德API</title>
-  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
-    <script type="text/javascript"
-            src="http://webapi.amap.com/maps?v=1.3&key=	60a14df622c13b4575bde3a01819265d"></script>
-	<!-- 下一行是左边的放大缩小移动操作台 -->
-    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
 </head>
 <body>
-<div id="container"></div>
-<script type="text/javascript">
-    //初始化地图对象，加载地图
-    var map = new AMap.Map("container", {resizeEnable: true});
-    var data = [
-        [106.574188, 29.52602,"0001","重庆辅仁路","60km/h",8.8],//重庆辅仁路
-        [106.583572, 29.535721,"0002","重庆烟雨路","60km/h",7.7],//重庆烟雨路
-		[106.57061, 29.53194,"0003","重庆宏声路","60km/h",6.6],//重庆宏声路
-        [106.578148, 29.53673,"0004","重庆南坪东路","60km/h",5.0],//重庆南坪东路
-        [106.57148, 29.524269,"0005","重庆江南大道","60km/h",9.0],//重庆江南大道
-        [106.557503,29.53101,"0006","重庆南铜路","60km/h",8.0],//重庆南铜路
-        [106.55127,29.532181,"0007","重庆双峰山路","60km/h",4.6],//重庆双峰山路
-        [106.557442,29.528299,"0008","重庆南坪西路","60km/h",5.2],//重庆南坪西路
-        [106.549843,29.52113,"0009","重庆明佳路","60km/h",6.3],//重庆明佳路
-        [106.539009,29.529301,"0010","重庆揽湖路","60km/h",7.9]//重庆揽湖路
-    ];	
- 
-    var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
-    for (var i = 0, marker; i < data.length; i++) {
-        var marker = new AMap.Marker({
-            position: data[i],
-            map: map,
-            road_name:data[i][3]
-        });
-        marker.content = '<strong>道路编号：' + data[i][2] + '</strong></br>';
-        marker.content+='<strong>道路名称：'+data[i][3]+'</strong>';
-        marker.content+='<div>设计时速：'+data[i][4]+'</div>';
-        marker.content+='<div>综合指数：'+data[i][5]+'</div>';
-        marker.content += '<div>经度：'+data[i][0]+'</div>';
-        marker.content += '<div>纬度：'+data[i][1]+'</div>';   
-        marker.orderno=data[i][2];   
-        marker.pos=data[i];
-        marker.on('mouseover',function(e){
-            infoWindow.setContent(e.target.content);
-            infoWindow.open(map, e.target.getPosition());
-        });
-        marker.on('mouseout',function(e){
-            infoWindow.close(map, e.target.getPosition());
-        });
-       marker.on('click',test);
-    }  
-    function test(e)
-    {
-    	 var x=e.target.orderno;
-    	 console.clear();
-         console.log(e.target.pos);
-         map.setZoomAndCenter(18,e.target.getPosition());	        
-         $.post(
- 				"${pageContext.request.contextPath }/getAjax2",
- 				{
- 					data:x
- 				},
- 				"text"
- 				)
-    }
-    map.setFitView();
-</script>
+    Hello World
+    
 </body>
 </html>
